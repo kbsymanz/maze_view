@@ -43,7 +43,15 @@ defmodule MazeViewWeb.MazeLive do
   @impl true
   def render(assigns) do
     ~L"""
-    Hello from Maze View
+    <div>
+      <%= case Map.has_key?(assigns, :grid) do %>
+        <%= true -> %>
+          <div><span>Algorithm: </span><span><%= @grid.meta.generated.algorithm %></span></div>
+          <div><span>Generated: </span><span><%= @grid.meta.generated.timestamp %></span></div>
+        <% _ -> %>
+          <span></span>
+        <% end %>
+    </div>
 
     <div>
       <svg version="1.1" baseProfile="full" width="<%= @board_width %>" height="<%= @board_height %>" xmlns="http://www.w3.org/2000/svg">
